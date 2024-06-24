@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { MouseEvent, MouseEventHandler, useEffect, useState } from "react";
 import { BsFillMoonFill } from "react-icons/bs";
 import { MdLightMode } from "react-icons/md";
 
@@ -17,6 +17,10 @@ export default function ModeSwitcher () {
   const [ mounted, setMounted ] = useState(false);
   const themeClasses = 'text-xl hover:text-amber-500 cursor-pointer'
 
+  const handleThemeChange = (event: MouseEvent<SVGElement, globalThis.MouseEvent>) => {
+    event.preventDefault();
+    setTheme(currentTheme === ThemeKind.DARK ? ThemeKind.LIGHT : ThemeKind.DARK)
+  }
   useEffect(() => setMounted(true), []);
 
   console.log(currentTheme, mounted, theme)
@@ -26,8 +30,8 @@ export default function ModeSwitcher () {
       { 
         mounted && (
           currentTheme === ThemeKind.DARK ? 
-          <MdLightMode className={themeClasses} onClick={() => setTheme(ThemeKind.DARK)} /> :
-          <BsFillMoonFill className={themeClasses} onClick={() => setTheme(ThemeKind.LIGHT)} /> 
+          <MdLightMode className={themeClasses} onClick={handleThemeChange} /> :
+          <BsFillMoonFill className={themeClasses} onClick={handleThemeChange} /> 
         )
       }
     </>
