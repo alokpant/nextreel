@@ -17,28 +17,30 @@ const API_URL = process.env.API_URL;
 
 export default async function Home({ searchParams }) {
   const genre: ApiParamType = searchParams.genre || ApiParam.TOP_TRENDING;
-  // const response = await fetch(`${API_URL}${API_GENRE_URL[genre]}?api_key=${API_KEY}&languages=en-US&page=1`)
-  // const data = await response.json()
+  const apiUrl = `${API_URL}${API_GENRE_URL[genre]}?api_key=${API_KEY}x&language=en-US&page=1`;
 
-  // console.log('=========================')
-  // console.log('=========================')
-  // console.log('=========================')
-  // console.log('=========================')
-  // console.log('=========================')
-  // console.log(`${API_URL}${API_GENRE_URL[genre]}?api_key=${API_KEY}&languages=en-US&page=1`)
-  // console.log(data)
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-  // if (!response.ok) {
-  //   throw new Error('Failed to see the result')
-  // }
+    console.log('=========================');
+    console.log('API URL:', apiUrl);
+    console.log('Response Data:', data);
 
-  // const result = data.results;
-  const result = genre === ApiParam.TOP_TRENDING ? topTrending.results : topRated.results;
-  const display = result.map(({id, original_title}) => <li key={id}>{original_title}</li>)
+    if (!response.ok) {
+      throw new Error('Failed to see the result');
+    }
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ul>{display}</ul>
-    </main>
-  );
+    const result = data.results;
+    const display = result.map(({ id, original_title }) => <li key={id}>{original_title}</li>);
+
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <ul>{display}</ul>
+      </main>
+    );
+  } catch (error) {
+    console.error('Error:', error);
+    throw new Error('Failed to see the result');
+  }
 }
