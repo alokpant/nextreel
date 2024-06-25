@@ -3,14 +3,16 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export enum ApiParam {
-  TOP_TRENDING = 'trending',
-  TOP_RATED = 'rated'
-}
+export const ApiParam = {
+  TOP_TRENDING: 'trending',
+  TOP_RATED: 'rated',
+} as const;
+
+export type ApiParamType = typeof ApiParam[keyof typeof ApiParam];
 
 interface SubHeaderItemProps {
   title: string
-  apiParam: ApiParam
+  apiParam: ApiParamType
 }
 
 export function SubHeaderItem ( { title, apiParam }:  SubHeaderItemProps) {
