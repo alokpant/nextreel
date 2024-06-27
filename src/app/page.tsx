@@ -1,10 +1,8 @@
 import { ApiParamType } from "@/components/subHeader/SubHeaderItem";
-import topTrending from '../data/topTrending.json';
-import topRated from '../data/topRated.json';
-import { useSearchParams } from 'next/navigation'
 import { ApiSuccessResponse, TopData } from "./types";
 import Cards from "@/components/cards/Cards";
 import { cleanUpRatedAndTrending } from "@/helper/data";
+import buildApiUrl from "@/helper/api";
 
 const ApiParam = {
   TOP_TRENDING: 'trending',
@@ -18,12 +16,9 @@ export const API_GENRE_URL = {
 
 const DAY_IN_SECONDS = 86400
 
-const API_KEY = process.env.API_KEY;
-const API_URL = process.env.API_URL;
-
 export default async function Home({ searchParams }:  Record<string, any>) {
   const genre: ApiParamType = searchParams.genre || ApiParam.TOP_TRENDING;
-  const apiUrl = `${API_URL}${API_GENRE_URL[genre]}?api_key=${API_KEY}&language=en-US&page=1`;
+  const apiUrl = buildApiUrl(API_GENRE_URL[genre]);
 
   try {
     const response = await fetch(apiUrl, { next: { revalidate: DAY_IN_SECONDS }});

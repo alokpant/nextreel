@@ -1,4 +1,4 @@
-interface TopRated {
+interface TopKind {
   adult: boolean,
   backdrop_path: string,
   genre_ids: string[],
@@ -15,24 +15,12 @@ interface TopRated {
   vote_count: number
 }
 
-interface TopTrending {
-  backdrop_path: string,
-  id: number,
-  title: string,
-  original_title: string,
-  overview: string,
-  poster_path: string,
+interface TopRated extends TopKind {}
+
+interface TopTrending extends TopKind {
   media_type: string,
-  adult: boolean,
   name: string,
-  original_language: string,
-  genre_ids: number[],
-  popularity: number,
   first_air_date: string,
-  release_date: string,
-  vote_average: number,
-  video: false,
-  vote_count: number,
 }
 
 export type TopData = TopRated | TopTrending;
@@ -42,4 +30,41 @@ export interface ApiSuccessResponse {
   results: TopData[]
   total_pages: number
   total_result: number
+}
+
+export interface Movie extends Omit<TopKind, 'genre_ids'> {
+  belongs_to_collection: {
+    id: number
+    name: string
+    poster_path: string
+    backdrop_path: string
+  }
+  budget: number
+  genres: {
+    id: number
+    name: string
+  }[]
+  homepage: string
+  imdb_id: string
+  origin_country: string[]
+  production_companies: {
+    id: number,
+    logo_path: string,
+    name: string,
+    original_country: string
+  }[]
+  production_countries: {
+    iso_3166_1: string,
+    name: string
+  }
+  release_date: string
+  revenue: number
+  runtime: number
+  spoken_languages: {
+    english_name: string
+    iso_3166_1: string
+    name: string
+  }[]
+  status: string
+  tagline: string
 }
