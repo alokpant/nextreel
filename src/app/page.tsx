@@ -14,6 +14,7 @@ export const API_GENRE_URL = {
   [ApiParam.TOP_RATED]: '/trending/all/week',
 } as const;
 
+const DAY_IN_SECONDS = 86400
 
 const API_KEY = process.env.API_KEY;
 const API_URL = process.env.API_URL;
@@ -23,7 +24,7 @@ export default async function Home({ searchParams }:  Record<string, any>) {
   const apiUrl = `${API_URL}${API_GENRE_URL[genre]}?api_key=${API_KEY}&language=en-US&page=1`;
 
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, { next: { revalidate: DAY_IN_SECONDS }});
     const data: ApiSuccessResponse = await response.json();
 
     if (!response.ok) {
