@@ -2,7 +2,9 @@ import { ApiParamType } from "@/components/subHeader/SubHeaderItem";
 import topTrending from '../data/topTrending.json';
 import topRated from '../data/topRated.json';
 import { useSearchParams } from 'next/navigation'
-import { ApiSuccessResponse } from "./types";
+import { ApiSuccessResponse, TopData } from "./types";
+import Cards from "@/components/cards/Cards";
+import { cleanUpRatedAndTrending } from "@/helper/data";
 
 const ApiParam = {
   TOP_TRENDING: 'trending',
@@ -31,12 +33,10 @@ export default async function Home({ searchParams }:  Record<string, any>) {
       throw new Error('Failed to see the result');
     }
 
-    const results = data.results;
-    const display = results.map(({ id, original_title }) => <li key={id}>{original_title}</li>);
-
+    const results = cleanUpRatedAndTrending<TopData>(data.results);
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <ul>{display}</ul>
+      <main className="max-w-6xl m-auto flex justify-between px-3 py-6 items-center">
+        <Cards cards={ results} />
       </main>
     );
   } catch (error) {

@@ -35,9 +35,11 @@ interface TopTrending {
   vote_count: number,
 }
 
+export type TopData = TopRated | TopTrending;
+
 export interface ApiSuccessResponse {
   page: number
-  results: (TopRated | TopTrending)[]
+  results: TopData[]
   total_pages: number
   total_result: number
 }
