@@ -28,11 +28,12 @@ export default async function MoviePage(movieParams: PageParams) {
     }
 
     return (
-      <main className="max-w-6xl m-auto flex justify-between px-3 py-6 items-start">
+      <main className="max-w-2xl m-auto grid grid-cols-1 sm:grid-cols-2 justify-center sm:justify-between px-3 py-6 items-start">
         <Image
           src={`${IMAGE_URL}${movie.poster_path}`}
-          width='500'
+          width='300'
           height='300'
+          className="justify-self-center sm:justify-self-start w-full"
           alt={movie.original_title}
         />
         <section className="p-3">
