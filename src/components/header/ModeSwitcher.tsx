@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from "next-themes";
-import { MouseEvent, MouseEventHandler, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { BsFillMoonFill } from "react-icons/bs";
 import { MdLightMode } from "react-icons/md";
 
@@ -22,8 +22,6 @@ export default function ModeSwitcher () {
     setTheme(currentTheme === ThemeKind.DARK ? ThemeKind.LIGHT : ThemeKind.DARK)
   }
   useEffect(() => setMounted(true), []);
-
-  console.log(currentTheme, mounted, theme)
 
   return (
     <>

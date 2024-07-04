@@ -1,5 +1,5 @@
 import buildApiUrl from "@/helper/api";
-import { Movie } from "../../types";
+import { Movie, PageParams } from "../../types";
 import Image from "next/image";
 import { FiThumbsUp } from "react-icons/fi";
 import Link from "next/link";
@@ -7,18 +7,10 @@ import Link from "next/link";
 const DAY_IN_SECONDS = 86400
 const IMAGE_URL = process.env.IMAGE_URL;
 
-interface PageParams {
-  params: { id: number },
-  searchParams: Record<string, any>
-}
-
 export default async function MoviePage(movieParams: PageParams) {
   const { params: { id }} = movieParams;
-
   const apiUrl = buildApiUrl(`/movie/${id}`);
 
-  console.log('apiURL')
-  console.log(apiUrl)
   try {
     const response = await fetch(apiUrl, { next: { revalidate: DAY_IN_SECONDS }});
     const movie: Movie = (await response.json());
@@ -50,5 +42,4 @@ export default async function MoviePage(movieParams: PageParams) {
     console.error('Error:', error);
     throw new Error('Failed to see the result');
   }
-  return <h1>I am a movie</h1>
 }

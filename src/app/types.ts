@@ -68,3 +68,11 @@ export interface Movie extends Omit<TopKind, 'genre_ids'> {
   status: string
   tagline: string
 }
+
+export interface PageParams {
+  params: {
+    id: number,
+    searchTerm: string
+  },
+  searchParams: Record<string, any>
+}
