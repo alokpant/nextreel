@@ -7,4 +7,4 @@ This is basically a movie app. This is built with:
 - Vercel for deployment 
 
 It can be viewed at:
-https://nextreel-2w3s-git-master-alokpants-projects.vercel.app
+https://nextreel-2w3s-mque0tzwz-alokpants-projects.vercel.app/
