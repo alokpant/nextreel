@@ -5,6 +5,7 @@ import Header from "@/components/header/Header";
 import Provider from "./Provider";
 import { SubHeader } from "@/components/subHeader/SubHeader";
 import SearchBox from "@/components/searchBox/SearchBox";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,8 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<Provider>
 					<Header />
-					<SubHeader />
-					<SearchBox />
+          <SubHeader />
+          <SearchBox />
 					{children}
 				</Provider>
 			</body>

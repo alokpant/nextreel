@@ -1,5 +1,5 @@
 import { buildSearchApiUrl } from "@/helper/api";
-import { ApiSuccessResponse, PageParams, TopData } from "../../types";
+import type { ApiSuccessResponse, PageParams, TopData } from "../../types";
 import { cleanUpRatedAndTrending } from "@/helper/data";
 import Cards from "@/components/cards/Cards";
 
