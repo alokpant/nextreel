@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { MouseEvent, useEffect, useState } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
 import { BsFillMoonFill } from "react-icons/bs";
 import { MdLightMode } from "react-icons/md";
 

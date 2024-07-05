@@ -3,11 +3,8 @@
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { PageParams } from "@/app/types";
 
 export default function SearchBox() {
-	// console.log('searchParams', searchParams)
-	// const searchTerm = searchParams?.params?.searchTerm || ''
 	const [search, setSearch] = useState("");
 	const router = useRouter();
 	console.log("router", router);

@@ -1,6 +1,3 @@
-import { AiFillHome } from "react-icons/ai";
-import MenuItem from "../menuItem/MenuItem";
-import { BsFillInfoCircleFill } from "react-icons/bs";
 import Navigation from "./Navigation";
 import Logo from "./Logo";
 import ModeSwitcher from "./ModeSwitcher";

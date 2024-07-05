@@ -1,4 +1,4 @@
-import { TopData } from "../../app/types";
+import type { TopData } from "../../app/types";
 import Card from "./Card";
 
 interface CardProps {
